@@ -42,10 +42,14 @@ export default {
     })
     if (code === 200) {
       const { html } = data
+
       return {
         html,
       }
     }
+  },
+  mounted() {
+    this.$toast.success('渲染成功。')
   },
 }
 </script>

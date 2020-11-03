@@ -1,12 +1,15 @@
 import qs from 'qs'
 import apiRespository from '~/api'
 
-const createService = (axiosInstance) => (
+const createService = (axiosInstance, ctx) => (
   option,
   { dataType = 'json', mock = false } = {}
 ) => {
-  if (mock && process.env.VUE_APP_MOCK_API) {
-    option.url = `${process.env.VUE_APP_MOCK_API}${option.url}`
+  const { env } = ctx
+  const { NUXT_APP_MOCK_API } = env
+
+  if (mock && NUXT_APP_MOCK_API) {
+    option.url = `${NUXT_APP_MOCK_API}${option.url}`
   }
 
   if (dataType === 'formData') {
@@ -24,10 +27,11 @@ const createService = (axiosInstance) => (
 }
 
 export default (ctx, inject) => {
-  const { $axios, redirect, store } = ctx
+  const { $axios, redirect, store, env } = ctx
+  const { NUXT_APP_BASE_API } = env
 
   const axiosInstance = $axios.create({
-    baseURL: 'http://luoshen.opvalue.com',
+    baseURL: NUXT_APP_BASE_API,
     timeout: 50000,
   })
 
@@ -39,7 +43,6 @@ export default (ctx, inject) => {
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
 
-    console.dir(config)
     return config
   })
 
@@ -71,7 +74,7 @@ export default (ctx, inject) => {
   })
 
   // 二次包装请求方法
-  const service = createService(axiosInstance)
+  const service = createService(axiosInstance, ctx)
 
   // 依赖注入
   inject('api', apiRespository(service))

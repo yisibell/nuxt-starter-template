@@ -1,10 +1,23 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
+
+function envFileName() {
+  const { NUXT_ENV_APP } = process.env
+
+  if (NUXT_ENV_APP === 'ft') {
+    return '.env.ft'
+  } else if (NUXT_ENV_APP === 'production') {
+    return '.env.production'
+  }
+
+  return '.env.development'
+}
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - nuxt-demo',
-    title: 'nuxt-demo',
+    titleTemplate: '%s - nuxt-template',
+    title: 'nuxt-template',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -28,16 +41,15 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    ['@nuxtjs/dotenv', { filename: envFileName() }],
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/toast',
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {

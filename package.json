@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build:ft": "cross-env NUXT_ENV_APP=ft nuxt build",
+    "build:prod": "cross-env NUXT_ENV_APP=prod nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -16,10 +17,12 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/toast": "^3.3.1",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6"
   },
   "devDependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/vuetify": "^1.11.2",
@@ -27,6 +30,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.5.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-nuxt": "^1.0.0",
