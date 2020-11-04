@@ -1,6 +1,5 @@
 export const state = () => ({
-  num: 0,
-  token: 'this is a test token value',
+  token: 'thisisaawesometoken',
 })
 
 export const getters = {
@@ -10,7 +9,7 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_ROOT(state, n) {
-    state.num++
+  SET_TOKEN(state, ticket) {
+    state.token = ticket
   },
 }

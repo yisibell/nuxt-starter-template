@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/toast": "^3.3.1",
     "core-js": "^3.6.5",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "vue-toasted": "^1.1.28"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
