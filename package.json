@@ -1,19 +1,20 @@
 {
-  "name": "nuxt-template",
+  "name": "nuxt-starter-template",
   "version": "1.0.0",
+  "description": "A Nuxt starter template.",
+  "author": {
+    "name": "elenh",
+    "email": "yisiwings@163.com"
+  },
   "scripts": {
     "dev": "nuxt",
     "build:ft": "cross-env NUXT_ENV_APP=ft nuxt build",
-    "build:prod": "cross-env NUXT_ENV_APP=prod nuxt build",
+    "build:prod": "cross-env NUXT_ENV_APP=production nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "test": "jest"
-  },
-  "author": {
-    "name": "elenh",
-    "email": "yisiwings@163.com"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
@@ -39,5 +40,8 @@
     "prettier": "^2.1.2",
     "qs": "^6.9.4",
     "vue-jest": "^3.0.4"
+  },
+  "engines": {
+    "node": ">= 10.x"
   }
 }
