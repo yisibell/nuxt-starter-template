@@ -63,7 +63,9 @@ export default {
     }
   },
   mounted() {
-    this.$toasted.info('this is a msg.', { duration: 3000 })
+    this.$toasted.info('Yep!', { duration: 3000 })
+    this.$toast.info('this is a msg by toast.')
+    this.$toast.global.success()
   },
 }
 </script>
