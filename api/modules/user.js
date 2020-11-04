@@ -4,7 +4,7 @@ export default (request) => ({
   // 获取用户列表
   index(params) {
     return request({
-      url: ``,
+      url: `/user`,
       method: 'get',
       params,
     })
@@ -12,7 +12,7 @@ export default (request) => ({
   // 新建用户
   create(data) {
     return request({
-      url: ``,
+      url: `/user`,
       method: 'post',
       data,
     })

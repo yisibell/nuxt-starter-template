@@ -6,6 +6,13 @@
     "name": "elenh",
     "email": "yisiwings@163.com"
   },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "starter template",
+    "ssr",
+    "vuetify"
+  ],
   "scripts": {
     "dev": "nuxt",
     "build:ft": "cross-env NUXT_ENV_APP=ft nuxt build",
