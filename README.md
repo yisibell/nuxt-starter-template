@@ -25,7 +25,7 @@ $ npm run generate
 
 # Features
 
-1. 友好的**开发**、**正式生产** 和 **测试生产** 环境区分，基于 `@nuxtjs/dotenv` 设计。
+## 友好的**开发**、**正式生产** 和 **测试生产** 环境区分，基于 `@nuxtjs/dotenv` 设计。
 
 在项目根目录下，有 3 个 `env` 文件，分别为：
 
@@ -57,13 +57,13 @@ NUXT_APP_BASE_API = 'http://some-host.com/api'
 
 这里的 `NUXT_APP_BASE_API` 就被应用为 `@nuxtjs/axios` 实例的 `baseURL`。具体可查看 `~/plugins/request.js` 中的实现。
 
-2. 组织清晰的 `api` 接口封装，基于 `@nuxtjs/axios` 设计。
+## 组织清晰的 `api` 接口封装，基于 `@nuxtjs/axios` 设计。
 
 为了方便的在项目中调用 `api` 接口，并且方便维护，该模板设计，封装了 `api` 目录和 `request` 插件。
 
-**api目录**
+### **api目录**
 
-`~/api/modules` 数据接口模块，该文件夹下存放按模块划分的数据接口定义。
+1. `~/api/modules` 数据接口模块，该文件夹下存放按模块划分的数据接口定义。
 
 例：`~/api/modules/user.js`
 
@@ -109,7 +109,7 @@ export default (request) => ({
 然后，需要导出一个对象，该对象内就是该数据模块的各类接口定义。
 
 
-`~/api/index.js` 数据接口仓库整合导出。
+2. `~/api/index.js` 数据接口仓库整合导出。
 
 例：
 
@@ -123,7 +123,7 @@ export default (request) => ({
 })
 ```
 
-**request插件**
+### **request插件**
 
 `~/plugins/request.js` 全局数据接口调用方式封装。
 
@@ -254,4 +254,23 @@ export const actions = {
 ```
 
 > 注：当然你也可以在 **mutations** 中访问到 `this.$api`，但不建议将异步处理放置在 **mutations** 中。
+
+## vue-toasted 插件封装
+
+该模板封装了 `vue-toasted` 插件，方便使用，且易于扩展其配置。定义文件位于 `~/plugins/vue-toasted.js`。
+
+你可以在 `*.vue` 或 `store` 中的 `mutations` 、`actions` 中使用 `$toast`。
+
+使用方式示例：
+
+``` js
+export default {
+  mounted() {
+    this.$toast.global.info('this is a info msg...')
+    this.$toast.global.success('this is a success msg...')
+    this.$toast.global.error('this is a warning msg...')
+    this.$toast.global.error('this is a error msg...')
+  }
+}
+```
 

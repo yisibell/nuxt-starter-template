@@ -10,16 +10,27 @@ Vue.use(Toasted, {
   iconPack: 'material',
 })
 
-const registers = [
-  {
-    name: 'success',
+const createToast = ({ type, icon, defaultMessage = '' } = {}) => {
+  return {
+    name: type,
     message: (payload) => {
       const { message } = payload
 
-      return message || 'success...'
+      return message || defaultMessage
     },
-    options: { type: 'success', icon: 'check' },
-  },
+    options: { type, icon },
+  }
+}
+
+const registers = [
+  createToast({ type: 'success', icon: 'done', defaultMessage: 'success...' }),
+  createToast({ type: 'error', icon: 'error', defaultMessage: 'error...' }),
+  createToast({
+    type: 'warning',
+    icon: 'warning',
+    defaultMessage: 'warning...',
+  }),
+  createToast({ type: 'info', icon: 'info', defaultMessage: 'info...' }),
 ]
 
 registers.forEach((v) => {

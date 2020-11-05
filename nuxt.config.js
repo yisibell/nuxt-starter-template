@@ -16,14 +16,20 @@ function envFileName() {
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - nuxt-template',
-    title: 'nuxt-template',
+    titleTemplate: '%s - nuxt-starter-template',
+    title: 'nuxt-starter-template',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Material+Icons',
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
