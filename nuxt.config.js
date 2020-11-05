@@ -1,5 +1,11 @@
+import path from 'path'
 import colors from 'vuetify/es5/util/colors'
+
 require('dotenv').config()
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 
 function envFileName() {
   const { NUXT_ENV_APP } = process.env
@@ -37,8 +43,9 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: '~/plugins/request' },
     { src: '~/plugins/vue-toasted', mode: 'client' },
+    { src: '~/plugins/request' },
+    { src: '~/plugins/svg-icon', mode: 'client' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -79,5 +86,27 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    extend(config, { isClient }) {
+      if (isClient) {
+        const svgRule = config.module.rules.find((rule) =>
+          rule.test.test('.svg')
+        )
+        svgRule.exclude = [resolve('assets/icons/svg')]
+
+        // Includes /assets/icons/svg for svg-sprite-loader
+        config.module.rules.push({
+          test: /\.svg$/,
+          include: [resolve('assets/icons/svg')],
+          loader: 'svg-sprite-loader',
+          options: {
+            symbolId: 'icon-[name]',
+          },
+        })
+      }
+    },
+  },
 }

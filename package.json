@@ -24,6 +24,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@aidol/svg-icon": "^1.1.4",
     "@nuxtjs/axios": "^5.12.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
@@ -46,6 +47,7 @@
     "jest": "^26.5.0",
     "prettier": "^2.1.2",
     "qs": "^6.9.4",
+    "svg-sprite-loader": "^5.0.0",
     "vue-jest": "^3.0.4"
   },
   "engines": {

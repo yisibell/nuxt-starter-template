@@ -274,3 +274,24 @@ export default {
 }
 ```
 
+## sprite svg icon
+
+你可以在项目中很方便的使用自己的 `svg` 图标。
+
+使用方式：
+
+1. 将制作好的 `svg` 图标放置到 `~/assets/icons/svg` 文件夹下，推荐使用阿里的 `iconfont`。
+2. 然后，你可以在 `*.vue` 的模板中这样用
+
+``` html
+<template>
+  <div>
+    <svg-icon icon-class="star" />
+  </div>
+</template>
+```
+
+这里的 `icon-class` 的值就是你放置在 `~/assets/icons/svg` 文件夹中的每个 `svg` 图标文件名。
+
+可参考 <a href="https://github.com/yisibell/aidol-svg-icon" target="_blank"> @aidol/svg-icon </a> 的实现逻辑。
+

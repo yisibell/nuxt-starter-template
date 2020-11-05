@@ -2,14 +2,10 @@
   <v-row>
     <v-col class="text-center">
       <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      <blockquote class="blockquote">
-        &#8220;First, solve the problem. Then, write the code.&#8221;
-        <footer>
-          <small>
-            <em>&mdash;John Johnson</em>
-          </small>
-        </footer>
-      </blockquote>
+      <div>
+        <svg-icon icon-class="hot" />
+        <span>hello nuxt starter template.</span>
+      </div>
       <div>
         <iframe :srcdoc="html" frameborder="0"></iframe>
       </div>
@@ -41,7 +37,7 @@ export default {
                       tagName: 'mj-text',
                       attributes: {
                         color: '#ffffff',
-                        'font-size': '25px',
+                        'font-size': '18px',
                         'text-align': 'center',
                       },
                       content: 'this is a mjml render content.',
