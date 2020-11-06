@@ -24,7 +24,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@aidol/svg-icon": "^1.1.4",
+    "@aidol/svg-icon": "^1.2.0",
     "@nuxtjs/axios": "^5.12.2",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
