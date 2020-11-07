@@ -20,6 +20,8 @@ function envFileName() {
 }
 
 export default {
+  // nuxt 构建源码目录
+  srcDir: 'src',
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - nuxt-starter-template',
@@ -95,12 +97,12 @@ export default {
         const svgRule = config.module.rules.find((rule) =>
           rule.test.test('.svg')
         )
-        svgRule.exclude = [resolve('assets/icons/svg')]
+        svgRule.exclude = [resolve('src/assets/icons/svg')]
 
         // Includes /assets/icons/svg for svg-sprite-loader
         config.module.rules.push({
           test: /\.svg$/,
-          include: [resolve('assets/icons/svg')],
+          include: [resolve('src/assets/icons/svg')],
           loader: 'svg-sprite-loader',
           options: {
             symbolId: 'icon-[name]',
