@@ -1,6 +1,6 @@
 # nuxt-starter-template
 
-A Nuxt + egg + vuetify starter template.
+A Nuxt + vuetify starter template.
 
 # Build Setup
 

@@ -1,7 +1,5 @@
-/* eslint-disable */
-
-const path = require('path')
-// const colors = require('vuetify/es5/util/colors')
+import path from 'path'
+import colors from 'vuetify/es5/util/colors'
 
 require('dotenv').config()
 
@@ -21,8 +19,9 @@ function envFileName() {
   return '.env.development'
 }
 
-module.exports = {
-  dev: process.env.NODE_ENV !== 'production',
+export default {
+  telemetry: true,
+
   // nuxt 构建源码目录
   srcDir: 'client/',
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -74,20 +73,20 @@ module.exports = {
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/styles/vuetify/variables.scss'],
-    // theme: {
-    //   dark: true,
-    //   themes: {
-    //     dark: {
-    //       primary: colors.blue.darken2,
-    //       accent: colors.grey.darken3,
-    //       secondary: colors.amber.darken3,
-    //       info: colors.teal.lighten1,
-    //       warning: colors.amber.base,
-    //       error: colors.deepOrange.accent4,
-    //       success: colors.green.accent3,
-    //     },
-    //   },
-    // },
+    theme: {
+      dark: true,
+      themes: {
+        dark: {
+          primary: colors.blue.darken2,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3,
+        },
+      },
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
