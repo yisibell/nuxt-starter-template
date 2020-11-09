@@ -19,9 +19,14 @@ $ npm run start
 $ npm run build:ft
 $ npm run start
 
+# launch server with pm2
+npm run pm2:start
+
 # generate static project
 $ npm run generate
 ```
+
+打开浏览器预览：**localhost:3000/**。
 
 # Features
 

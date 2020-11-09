@@ -3,10 +3,6 @@ import colors from 'vuetify/es5/util/colors'
 
 require('dotenv').config()
 
-function resolve(dir) {
-  return path.join(__dirname, dir)
-}
-
 function envFileName() {
   const { NUXT_ENV_APP } = process.env
 
@@ -19,11 +15,20 @@ function envFileName() {
   return '.env.development'
 }
 
+const srcDir = 'client'
+
+function resolve(dir) {
+  return path.join(__dirname, srcDir, dir)
+}
+
 export default {
   telemetry: true,
-
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+  },
   // nuxt 构建源码目录
-  srcDir: 'client/',
+  srcDir,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - nuxt-starter-template',
@@ -61,7 +66,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    ['@nuxtjs/dotenv', { filename: envFileName() }],
+    ['@nuxtjs/dotenv', { filename: envFileName(), path: './' }],
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -99,12 +104,12 @@ export default {
         const svgRule = config.module.rules.find((rule) =>
           rule.test.test('.svg')
         )
-        svgRule.exclude = [resolve('src/assets/icons/svg')]
+        svgRule.exclude = [resolve('assets/icons/svg')]
 
         // Includes /assets/icons/svg for svg-sprite-loader
         config.module.rules.push({
           test: /\.svg$/,
-          include: [resolve('src/assets/icons/svg')],
+          include: [resolve('assets/icons/svg')],
           loader: 'svg-sprite-loader',
           options: {
             symbolId: 'icon-[name]',

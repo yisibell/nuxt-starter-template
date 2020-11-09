@@ -1,7 +1,7 @@
 import qs from 'qs'
 import apiRespository from '~/api'
 
-const createService = (axiosInstance, ctx) => (
+export const createService = (axiosInstance, ctx) => (
   option,
   { dataType = 'json', mock = false } = {}
 ) => {
