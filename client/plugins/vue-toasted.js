@@ -13,9 +13,7 @@ Vue.use(Toasted, {
 const createToast = ({ type, icon, defaultMessage = '' } = {}) => {
   return {
     name: type,
-    message: (payload) => {
-      const { message } = payload
-
+    message: (message) => {
       return message || defaultMessage
     },
     options: { type, icon },

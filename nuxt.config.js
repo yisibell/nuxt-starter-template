@@ -82,7 +82,7 @@ export default {
     theme: {
       themes: {
         light: {
-          primary: colors.purple,
+          primary: '#1EB5FF',
           secondary: colors.grey.darken1,
           accent: colors.shades.black,
           error: colors.red.accent3,
