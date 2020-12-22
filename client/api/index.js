@@ -1,7 +1,5 @@
-import user from './modules/user'
-import email from './modules/email'
+import questionnaire from './modules/questionnaire'
 
 export default (request) => ({
-  user: user(request),
-  email: email(request),
+  questionnaire: questionnaire(request),
 })

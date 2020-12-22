@@ -1,13 +1,12 @@
 <template>
-  <v-app dark>
+  <div class="error-page">
     <h1 v-if="error.statusCode === 404">
       {{ pageNotFound }}
     </h1>
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -16,7 +15,10 @@ export default {
   props: {
     error: {
       type: Object,
-      default: null,
+      default: () => ({
+        statusCode: '',
+        message: '',
+      }),
     },
   },
   data() {
@@ -35,8 +37,11 @@ export default {
 }
 </script>
 
-<style scoped>
-h1 {
-  font-size: 20px;
+<style lang="scss" scoped>
+.error-page {
+  text-align: center;
+  h1 {
+    font-size: 20px;
+  }
 }
 </style>

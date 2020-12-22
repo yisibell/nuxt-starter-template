@@ -1,12 +1,15 @@
 <template>
   <div class="questionnaire-home">
     <div class="text-center">
-      <vuetify-logo />
+      <base-logo :src="questionnaire_info.logo" />
     </div>
     <v-card class="mb-4">
       <v-card-title class="questionnaire-home__title">
-        You are invited to participate in our user surveys to improve the
-        quality of our website services.
+        {{
+          (questionnaire_info.front_cover_text &&
+            questionnaire_info.front_cover_text.content) ||
+          `You are invited to participate in our user surveys to improve the quality of our website services.`
+        }}
       </v-card-title>
       <v-card-text>
         <div class="questionnaire-home__return">
@@ -37,24 +40,52 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import { mapGetters, mapState } from 'vuex'
+import BaseLogo from '~/components/BaseLogo'
 
 export default {
   layout: 'questionnaire',
   components: {
-    VuetifyLogo,
+    BaseLogo,
+  },
+  validate({ query }) {
+    const { token } = query
+
+    return !!token
+  },
+  async fetch({ store, query, error }) {
+    await store.dispatch('questionnaire/fetchQuestionnaire', query)
+  },
+  computed: {
+    ...mapGetters('questionnaire', ['isStoped', 'isSubmitted']),
+    ...mapState('questionnaire', ['questionnaire_info', 'token']),
   },
   mounted() {
-    this.SET_TOKEN(+new Date())
+    this.validate()
   },
   methods: {
-    ...mapMutations(['SET_TOKEN']),
+    // 开始答题
     handleStart() {
-      this.$toast.global.warning('This investigation has been suspended!')
-      this.$toast.global.warning('This investigation is over!')
+      if (this.validate()) {
+        this.$router.push({ path: '/servey', query: this.$route.query })
+      }
+    },
+    // 验证
+    validate() {
+      if (this.isSubmitted) {
+        this.$toast.global.warning('This investigation has been submitted!')
+        this.$router.push({
+          path: '/servey/award',
+          query: this.$route.query,
+        })
+        return false
+      }
 
-      this.$router.push('/servey')
+      if (this.isStoped) {
+        this.$toast.global.warning('This investigation is over!')
+        return false
+      }
+      return true
     },
   },
 }
@@ -76,7 +107,7 @@ export default {
   &__return {
     text-align: center;
     border: 1px solid #979797;
-    padding: 20px;
+    padding: 60px;
     margin-bottom: 50px;
     font-size: 1rem;
     color: #000000;
@@ -100,9 +131,15 @@ export default {
   &__start-btn {
     flex: 0.2;
   }
+}
 
-  @media screen and (max-width: 600px) {
-    .questionnaire-home__start-btn {
+@media screen and (max-width: 600px) {
+  .questionnaire-home {
+    &__return {
+      padding: 20px;
+    }
+
+    &__start-btn {
       flex: 1;
     }
   }
