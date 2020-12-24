@@ -27,8 +27,9 @@ export const createService = (axiosInstance, ctx) => (
 }
 
 export default (ctx, inject) => {
-  const { $axios, redirect, store, env } = ctx
+  const { $axios, redirect, store, env, app } = ctx
   const { NUXT_APP_BASE_API } = env
+  const isClient = process.client
 
   const axiosInstance = $axios.create({
     baseURL: NUXT_APP_BASE_API,
@@ -40,7 +41,7 @@ export default (ctx, inject) => {
     // do something before request is sent
     if (store.getters.token) {
       // let each request carry token
-      config.headers.Authorization = `Bearer ${store.getters.token}`
+      config.headers.Authorization = `${store.getters.token}`
     }
 
     return config
@@ -48,16 +49,18 @@ export default (ctx, inject) => {
 
   // 请求错误处理
   axiosInstance.onRequestError((err) => {
-    console.dir('请求出错：', err)
+    console.error('[Request Error]：', err)
   })
 
   // 响应拦截
   axiosInstance.onResponse((res) => {
     const { data } = res
+    const { code, msg } = data
 
-    // if (![200, 201].includes(data.code)) {
-    // token 失效？ 去重新登录
-    // }
+    if (![200, 201].includes(code)) {
+      console.error('[Response Error Data]:', data)
+      isClient && app.$toast.global.info(msg || 'error')
+    }
 
     return data
   })
@@ -65,11 +68,12 @@ export default (ctx, inject) => {
   // 响应错误处理
   axiosInstance.onResponseError((err) => {
     const { parseInt } = Number
-
     const code = parseInt(err.response && err.response.status)
 
-    if (code === 400) {
-      redirect('/400')
+    console.error('[HTTP Response Error Info]:', err)
+
+    if ([400, 404].includes(code)) {
+      redirect('/404')
     }
   })
 

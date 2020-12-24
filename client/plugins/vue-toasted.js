@@ -14,9 +14,9 @@ const createToast = ({ type, icon, defaultMessage = '' } = {}) => {
   return {
     name: type,
     message: (payload) => {
-      const { message } = payload
+      if (typeof payload === 'string') return payload
 
-      return message || defaultMessage
+      return payload.message || defaultMessage
     },
     options: { type, icon },
   }

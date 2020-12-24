@@ -6,9 +6,6 @@
         <svg-icon icon-class="hot" />
         <span>hello nuxt starter template.</span>
       </div>
-      <div>
-        <iframe :srcdoc="html" frameborder="0"></iframe>
-      </div>
     </v-col>
   </v-row>
 </template>
@@ -16,56 +13,8 @@
 <script>
 export default {
   name: 'Inspire',
-  async asyncData({ app }) {
-    try {
-      const { code, data } = await app.$api.email.mjml2html({
-        tagName: 'mjml',
-        attributes: {},
-        children: [
-          {
-            tagName: 'mj-body',
-            attributes: {},
-            children: [
-              {
-                tagName: 'mj-section',
-                attributes: {},
-                children: [
-                  {
-                    tagName: 'mj-column',
-                    attributes: {},
-                    children: [
-                      {
-                        tagName: 'mj-text',
-                        attributes: {
-                          color: '#ffffff',
-                          'font-size': '18px',
-                          'text-align': 'center',
-                        },
-                        content: 'this is a mjml render content.',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      })
-      if (code === 200) {
-        const { html } = data
-
-        return {
-          html,
-        }
-      }
-    } catch (err) {
-      return {
-        html: '',
-      }
-    }
-  },
   mounted() {
-    this.$toast.global.success()
+    this.$toast.global.success('fafagagagag')
     this.$toast.global.error()
     this.$toast.global.warning()
     this.$toast.global.info()
