@@ -1,11 +1,14 @@
 <template>
   <div class="error-page">
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
+    <div class="error-page__code">{{ code }}</div>
+    <div class="error-page__msg">{{ msg }}</div>
+    <div class="error-page__sub-msg">
+      <span>The requested URL was not found on this server.</span>
+      <i>That’s all we know.</i>
+    </div>
+    <div class="error-page__robot">
+      <img src="/images/robot.png" alt="robot" />
+    </div>
   </div>
 </template>
 
@@ -24,14 +27,21 @@ export default {
   data() {
     return {
       pageNotFound: '404 Not Found',
-      otherError: 'An error occurred',
+      otherError: 'this is an error.',
     }
   },
+  computed: {
+    code() {
+      return this.error.statusCode || 404
+    },
+    msg() {
+      return this.error.message || this.otherError
+    },
+  },
   head() {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
-      title,
+      title:
+        this.error.statusCode === 404 ? this.pageNotFound : this.otherError,
     }
   },
 }
@@ -40,8 +50,20 @@ export default {
 <style lang="scss" scoped>
 .error-page {
   text-align: center;
-  h1 {
-    font-size: 20px;
+
+  &__code {
+    font-weight: 600;
+    font-size: 28px;
+  }
+
+  &__msg {
+    font-size: 14px;
+  }
+
+  &__sub-msg {
+    i {
+      color: rgb(112, 108, 108);
+    }
   }
 }
 </style>

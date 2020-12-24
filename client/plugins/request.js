@@ -70,9 +70,9 @@ export default (ctx, inject) => {
     const { parseInt } = Number
     const code = parseInt(err.response && err.response.status)
 
-    if (code === 400) {
-      redirect('/400')
-    } else {
+    console.error('[HTTP Response Error Info]:', err)
+
+    if ([400, 404].includes(code)) {
       redirect('/404')
     }
   })
