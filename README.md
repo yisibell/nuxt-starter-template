@@ -266,18 +266,23 @@ export const actions = {
 
 你可以在 `*.vue` 或 `store` 中的 `mutations` 、`actions` 中使用 `$toast`。
 
-使用方式示例：
+**1.使用方式示例：**
 
 ``` js
 export default {
   mounted() {
     this.$toast.global.info('this is a info msg...')
     this.$toast.global.success('this is a success msg...')
-    this.$toast.global.error('this is a warning msg...')
+    this.$toast.global.warning('this is a warning msg...')
     this.$toast.global.error('this is a error msg...')
+    this.$toast.show('this is a default msg...', { duration: 4000 })
   }
 }
 ```
+
+**2.自定义 vue-toasted 样式：**
+
+可在 `~/assets/styles/modules/vue-toasted-custom.scss` 中修改 `vue-toasted` 的相关样式。
 
 ## sprite svg icon
 

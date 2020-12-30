@@ -8,6 +8,7 @@ Vue.use(Toasted, {
   fitToScreen: false,
   fullWidth: false,
   iconPack: 'material',
+  className: ['my-custom-toasted'],
 })
 
 const createToast = ({ type, icon, defaultMessage = '' } = {}) => {
@@ -24,13 +25,13 @@ const createToast = ({ type, icon, defaultMessage = '' } = {}) => {
 
 const registers = [
   createToast({ type: 'success', icon: 'done', defaultMessage: 'success...' }),
+  createToast({ type: 'info', icon: 'info', defaultMessage: 'info...' }),
   createToast({ type: 'error', icon: 'error', defaultMessage: 'error...' }),
   createToast({
     type: 'warning',
     icon: 'warning',
     defaultMessage: 'warning...',
   }),
-  createToast({ type: 'info', icon: 'info', defaultMessage: 'info...' }),
 ]
 
 registers.forEach((v) => {
